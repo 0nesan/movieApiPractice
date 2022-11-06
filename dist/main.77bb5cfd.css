@@ -1,0 +1,31 @@
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+}
+header .header-title {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #ddd;
+  text-indent: -9999px;
+  cursor: pointer;
+}
+header .header-list-wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 20px;
+}
+header .header-list-wrap .header-list button {
+  border: none;
+  background: skyblue;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #fff;
+}
+
+/*# sourceMappingURL=/main.77bb5cfd.css.map */

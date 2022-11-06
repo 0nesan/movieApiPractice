@@ -1,0 +1,7 @@
+@mixin button-reset($border-all, $bg-color) {
+    border:$border-all;
+    background:$bg-color;
+    cursor:pointer;
+}
+
+

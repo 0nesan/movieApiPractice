@@ -1,7 +1,15 @@
+@import url("https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css");
+* { font-family:'NanumBarunGothic' !important;}
+html, body {
+    font-size:10px;
+}
+
 @mixin button-reset($border-all, $bg-color) {
     border:$border-all;
     background:$bg-color;
     cursor:pointer;
 }
+
+
 
 

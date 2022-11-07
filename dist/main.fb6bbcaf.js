@@ -117,9 +117,44 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/main.js":[function(require,module,exports) {
-console.log('test');
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"js/components/header.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.headerRender = void 0;
+var _main = require("../main.js");
+var headerRender = function headerRender() {
+  var header = document.querySelector('header');
+  header.innerHTML = "\n        ".concat(_main.title, "\n    ");
+};
+exports.headerRender = headerRender;
+},{"../main.js":"js/main.js"}],"js/main.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.title = exports.main = void 0;
+var _header = require("./components/header");
+var main = document.querySelector('main');
+exports.main = main;
+var title = "<h1 class=\"title\">OMDb API</h1> ";
+exports.title = title;
+var mainRender = function mainRender() {
+  main.innerHTML = " \n        ".concat(title, "\n        <ul class=\"menu-wrap\">\n            <li class=\"menu\">\n                <span>Search</span>\n            </li>\n            <li class=\"menu\">\n                <span>Movies</span>\n            </li>\n            <li class=\"menu\">\n                <span>About</span>\n            </li>\n        </ul>\n    ");
+};
+mainRender();
+var menuListHandler = function menuListHandler(url) {
+  url = url.target.innerText;
+  (0, _header.headerRender)();
+};
+var menuList = document.querySelectorAll('.menu');
+menuList.forEach(function (e) {
+  e.addEventListener('click', menuListHandler);
+});
+},{"./components/header":"js/components/header.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -144,7 +179,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53915" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55916" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

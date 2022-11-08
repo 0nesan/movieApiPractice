@@ -123,38 +123,103 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.headerRender = void 0;
-var _main = require("../main.js");
-var headerRender = function headerRender() {
-  var header = document.querySelector('header');
-  header.innerHTML = "\n        ".concat(_main.title, "\n    ");
+exports.Header = void 0;
+var Header = {
+  headerRoot: document.querySelector('header'),
+  headerInner: "\n        <div class=\"header-wrap\">\n            <h1 class=\"title\">OMDb API</h1>\n            \n            <ul class=\"menu-wrap\">\n                <li class=\"menu\">\n                    <span>Search</span>\n                </li>\n                <li class=\"menu\">\n                    <span>Movies</span>\n                </li>\n                <li class=\"menu\">\n                    <span>About</span>\n                </li>\n            </ul>\n        </div>",
+  headerRender: function headerRender() {
+    Header.headerRoot.innerHTML = Header.headerInner;
+  }
 };
-exports.headerRender = headerRender;
+exports.Header = Header;
+},{}],"js/components/search.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.searchPageReander = void 0;
+var _main = require("../main.js");
+var searchPageReander = {
+  serchInner: "\n        <div class=\"search-input-wrap\">\n            <input class=\"\" placeholder=\"\uAC80\uC0C9\uC5B4\uB97C \uC785\uB825\uD558\uC138\uC694.\">\n            <select class=\"type\">\n                <option value=\"movie\">movie</option>\n                <option value=\"series\">series</option>\n                <option value=\"episode\">episode</option>\n            </select>\n            <select>\n                <option value=\"10\">10</option>\n                <option value=\"20\">20</option>\n                <option value=\"30\">30</option>\n            </select>\n            <select>\n                <option value=\"All\">All Years</option>\n                <option value=\"20\">20</option>\n                <option value=\"30\">30</option>\n            </select>\n        </div>",
+  searchRender: function searchRender() {
+    _main.main.innerHTML = "\n        ".concat(searchPageReander.serchInner);
+  }
+};
+exports.searchPageReander = searchPageReander;
 },{"../main.js":"js/main.js"}],"js/main.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.title = exports.main = void 0;
+exports.main = void 0;
 var _header = require("./components/header");
+var _search = require("./components/search");
 var main = document.querySelector('main');
 exports.main = main;
-var title = "<h1 class=\"title\">OMDb API</h1> ";
-exports.title = title;
 var mainRender = function mainRender() {
-  main.innerHTML = " \n        ".concat(title, "\n        <ul class=\"menu-wrap\">\n            <li class=\"menu\">\n                <span>Search</span>\n            </li>\n            <li class=\"menu\">\n                <span>Movies</span>\n            </li>\n            <li class=\"menu\">\n                <span>About</span>\n            </li>\n        </ul>\n    ");
+  _header.Header.headerRoot.innerHTML = "";
+  main.innerHTML = _header.Header.headerInner;
 };
 mainRender();
-var menuListHandler = function menuListHandler(url) {
-  url = url.target.innerText;
-  (0, _header.headerRender)();
+
+// 랜더 함수
+var renderContents = function renderContents() {
+  var pathname = window.location.pathname;
+  switch (pathname) {
+    case '/':
+      mainRender();
+      break;
+    case '/search':
+      _header.Header.headerRender();
+      _search.searchPageReander.searchRender();
+      break;
+    default:
+      main.innerHTML = "<div>404</div>";
+  }
+  menuEventListener();
 };
-var menuList = document.querySelectorAll('.menu');
-menuList.forEach(function (e) {
-  e.addEventListener('click', menuListHandler);
+var menuEventListener = function menuEventListener() {
+  var title = document.querySelector('.title');
+  var menuList = document.querySelectorAll('.menu span');
+  title.addEventListener("click", function () {
+    var locationChangeEvent = new CustomEvent("locationchange", {
+      composed: true,
+      detail: {
+        href: '/'
+      }
+    });
+    window.dispatchEvent(locationChangeEvent);
+  });
+  menuList.forEach(function (e) {
+    e.addEventListener('click', function (e) {
+      var text = e.target.innerText;
+      var hrefVal = '';
+      if (text === 'Search') hrefVal = '/search';
+      if (text === 'Movies') hrefVal = '/movies';
+      if (text === 'About') hrefVal = '/about';
+      var locationChangeEvent = new CustomEvent("locationchange", {
+        composed: true,
+        detail: {
+          href: hrefVal
+        }
+      });
+      window.dispatchEvent(locationChangeEvent);
+    });
+  });
+};
+menuEventListener();
+var handleLocationChange = function handleLocationChange(e) {
+  var href = e.detail.href;
+  window.history.pushState(undefined, "타이틀", href);
+  renderContents();
+};
+window.addEventListener("locationchange", handleLocationChange);
+window.addEventListener("popstate", function () {
+  renderContents();
 });
-},{"./components/header":"js/components/header.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/header":"js/components/header.js","./components/search":"js/components/search.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -179,7 +244,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55916" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61089" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

@@ -117,62 +117,121 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
+})({"js/components/header.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Header = void 0;
+var Header = {
+  headerRoot: document.querySelector('header'),
+  headerInner: "\n        <div class=\"header-wrap\">\n            <h1 class=\"title\">OMDb API</h1>\n            \n            <ul class=\"menu-wrap\">\n                <li class=\"menu\">\n                    <span>Search</span>\n                </li>\n                <li class=\"menu\">\n                    <span>Movies</span>\n                </li>\n                <li class=\"menu\">\n                    <span>About</span>\n                </li>\n            </ul>\n        </div>",
+  headerRender: function headerRender() {
+    Header.headerRoot.innerHTML = Header.headerInner;
   }
-  return bundleURL;
-}
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
+};
+exports.Header = Header;
+},{}],"js/components/main.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Main = void 0;
+var _header = require("./header");
+var Main = {
+  app: document.querySelector('main'),
+  mainRender: function mainRender() {
+    _header.Header.headerRoot.innerHTML = "";
+    Main.app.innerHTML = _header.Header.headerInner;
   }
-  return '/';
-}
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
-}
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-function updateLink(link) {
-  var newLink = link.cloneNode();
-  newLink.onload = function () {
-    link.remove();
-  };
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-var cssTimeout = null;
-function reloadCSS() {
-  if (cssTimeout) {
+};
+exports.Main = Main;
+},{"./header":"js/components/header.js"}],"js/components/search.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Search = void 0;
+var _main = require("./main.js");
+var Search = {
+  serchInner: "\n        <div class=\"search-input-wrap\">\n            <input class=\"\" placeholder=\"\uAC80\uC0C9\uC5B4\uB97C \uC785\uB825\uD558\uC138\uC694.\">\n            <select class=\"type\">\n                <option value=\"movie\">movie</option>\n                <option value=\"series\">series</option>\n                <option value=\"episode\">episode</option>\n            </select>\n            <select>\n                <option value=\"10\">10</option>\n                <option value=\"20\">20</option>\n                <option value=\"30\">30</option>\n            </select>\n            <select>\n                <option value=\"All\">All Years</option>\n                <option value=\"20\">20</option>\n                <option value=\"30\">30</option>\n            </select>\n        </div>",
+  searchRender: function searchRender() {
+    _main.Main.app.innerHTML = "\n        ".concat(Search.serchInner);
+  }
+};
+exports.Search = Search;
+},{"./main.js":"js/components/main.js"}],"js/app.js":[function(require,module,exports) {
+"use strict";
+
+var _main = require("./components/main");
+var _search = require("./components/search");
+var _header = require("./components/header");
+_main.Main.mainRender();
+
+// 랜더 함수
+var renderContents = function renderContents() {
+  var pathname = window.location.pathname;
+  switch (pathname) {
+    case '/':
+      _main.Main.mainRender();
+      break;
+    case '/search':
+      _header.Header.headerRender();
+      _search.Search.searchRender();
+      break;
+    case '/movies':
+      _header.Header.headerRender();
+      break;
+    case '/about':
+      _header.Header.headerRender();
+      break;
+    default:
+      _main.Main.app.innerHTML = "<div>404</div>";
+  }
+  menuEventListener();
+};
+var menuEventListener = function menuEventListener() {
+  var title = document.querySelector('.title');
+  var menuList = document.querySelectorAll('.menu span');
+  title.addEventListener("click", locationChange);
+  menuList.forEach(function (e) {
+    e.addEventListener('click', locationChange);
+  });
+};
+menuEventListener();
+function locationChange(e) {
+  var text = e.target.innerText;
+  var hrefVal = '';
+  if (text === 'OMDb API') hrefVal = '/';
+  if (text === 'Search') hrefVal = '/search';
+  if (text === 'Movies') hrefVal = '/movies';
+  if (text === 'About') hrefVal = '/about';
+  var targetUrl = hrefVal;
+  var pathname = window.location.pathname;
+  if (targetUrl === pathname) {
     return;
   }
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
+  var locationChangeEvent = new CustomEvent("locationchange", {
+    composed: true,
+    detail: {
+      href: hrefVal
     }
-    cssTimeout = null;
-  }, 50);
+  });
+  window.dispatchEvent(locationChangeEvent);
 }
-module.exports = reloadCSS;
-},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"scss/main.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"./..\\images\\background.png":[["background.0063873b.png","images/background.png"],"images/background.png"],"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var handleLocationChange = function handleLocationChange(e) {
+  var href = e.detail.href;
+  window.history.pushState(undefined, "타이틀", href);
+  renderContents();
+};
+window.addEventListener("locationchange", handleLocationChange);
+window.addEventListener("popstate", function () {
+  renderContents();
+});
+},{"./components/main":"js/components/main.js","./components/search":"js/components/search.js","./components/header":"js/components/header.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -341,5 +400,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/main.77bb5cfd.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+//# sourceMappingURL=/app.c3f9f951.js.map

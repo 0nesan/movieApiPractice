@@ -1,8 +1,14 @@
+@import "common.scss";
+
 header {
+    max-width:1500px;
+    margin:auto;
+
     .header-wrap {
         display:flex; 
         gap:50px;
         width:100%;
+        max-width:1500px;
         padding:20px 30px;
 
         .title {
@@ -25,6 +31,11 @@ header {
                     cursor:pointer;
         
                     &:hover {
+                        color:#fff;
+                        text-shadow:1px 1px 3px #000;
+                    }
+
+                    &.click {
                         color:#fff;
                         text-shadow:1px 1px 3px #000;
                     }

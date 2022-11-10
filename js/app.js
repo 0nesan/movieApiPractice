@@ -1,6 +1,6 @@
-import { Main } from './components/main'
-import { Search } from './components/search';
-import { Header } from './components/header';
+import { Main } from './components/main.js'
+import { Search } from './components/search.js';
+import { Header } from './components/header.js';
 
 // 랜더 함수
 const renderContents = () => {
@@ -33,6 +33,10 @@ const menuEventListener = () => {
     const menuList = document.querySelectorAll('.menu span');
     title.addEventListener("click", locationChange);
     menuList.forEach(e => {
+        const { pathname } = window.location;
+        e.classList.remove('click')
+
+        if(`/${e.innerText.toLowerCase()}` === pathname) e.classList.add('click'); 
         e.addEventListener('click', locationChange);
     });
 }

@@ -32,6 +32,11 @@ html {
 }
 
 main {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin:auto;
+
     .title {
         margin:10vh 0 0 50px;
         color:#fff;
@@ -44,7 +49,7 @@ main {
         display:flex;
         flex-direction:column;
         gap:100px;
-        margin:10vh 0 0;
+        margin:10vh 0 10vh;
     
         .menu {
             margin-left:100px;
@@ -60,6 +65,10 @@ main {
                 }
             }
         }
+    }
+
+    .header-wrap {
+        align-self:flex-start
     }
 }
 

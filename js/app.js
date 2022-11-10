@@ -2,8 +2,6 @@ import { Main } from './components/main'
 import { Search } from './components/search';
 import { Header } from './components/header';
 
-Main.mainRender();
-
 // 랜더 함수
 const renderContents = () => {
     const { pathname } = window.location;
@@ -25,7 +23,9 @@ const renderContents = () => {
             Main.app.innerHTML = "<div>404</div>";
     }
 
-    menuEventListener()
+    setTimeout(() => {
+        menuEventListener()
+    },100)
 };
 
 const menuEventListener = () => {
@@ -36,7 +36,6 @@ const menuEventListener = () => {
         e.addEventListener('click', locationChange);
     });
 }
-menuEventListener();
 
 function locationChange(e) {
         let text = e.target.innerText;
@@ -75,3 +74,5 @@ window.addEventListener("popstate", () => {
     renderContents();
 });
 
+// 초기 랜더
+renderContents()

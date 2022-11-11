@@ -6,16 +6,17 @@ header {
 
     .header-wrap {
         display:flex; 
-        gap:50px;
+        gap:40px;
         width:100%;
         max-width:1500px;
         padding:20px 30px;
 
         .title {
             color:#fff;
-            font-size:4rem;
+            font-size:4.5rem;
             font-weight:900;
             text-shadow:1px 1px 5px #000;
+            cursor: pointer;
         }
         
         .menu-wrap { 
@@ -24,7 +25,7 @@ header {
             gap:30px;
 
             .menu {
-                font-size:2rem;
+                font-size:2.5rem;
                 font-weight:900;
         
                 span {

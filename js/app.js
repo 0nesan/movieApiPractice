@@ -1,6 +1,7 @@
 import { Main } from './components/main.js'
 import { Search } from './components/search.js';
 import { Header } from './components/header.js';
+import { Movies } from './components/movies.js';
 
 // 랜더 함수
 const renderContents = () => {
@@ -15,6 +16,7 @@ const renderContents = () => {
             break;
         case '/movies':
             Header.headerRender();
+            Movies.mainRender();
             break;
         case '/about':
             Header.headerRender();
@@ -41,7 +43,7 @@ const menuEventListener = () => {
     });
 }
 
-function locationChange(e) {
+export function locationChange(e) {
         let text = e.target.innerText;
         let hrefVal = '';
 
@@ -49,6 +51,7 @@ function locationChange(e) {
         if(text === 'Search' ) hrefVal = '/search'
         if(text === 'Movies' ) hrefVal = '/movies'
         if(text === 'About' ) hrefVal = '/about'
+        if(e.target.classList.contains('movie-list')) hrefVal = '/movies'
 
         const targetUrl = hrefVal;
         const { pathname } = window.location;

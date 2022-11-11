@@ -16,3 +16,30 @@ html, body {
     overflow:hidden;
     text-overflow:ellipsis;
 }
+
+.loading {
+    display:none;
+}
+
+.start {
+    display:block;
+    width:150px;
+    height:150px;
+    background:rgba(255,255,255,.7);
+    border-radius:50%;
+    // box-shadow: 0px 0px 10px 5px #fff;
+    position:fixed;
+    top:calc(50% - 75px);
+    left:calc(50% - 75px);;
+    transform:rotate(90deg);
+    overflow:hidden;
+
+    .loading-bg {
+        width:150px;
+        height:1000%;
+        background-image:url('../images/background.png');
+        background-position:center;
+        background-size:contain;
+        animation: bg-ani 5s linear forwards;
+    }
+}

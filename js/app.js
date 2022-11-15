@@ -14,21 +14,27 @@ const renderContents = () => {
             Header.headerRender();
             Search.searchRender();
             break;
-        case '/movies':
+        case '/movie':
             Header.headerRender();
             Movies.mainRender();
             break;
-        case '/about':
-            Header.headerRender();
-            break;
         default:
-            Main.app.innerHTML = "<div>404</div>";
+            Header.headerRender();
+            Main.app.innerHTML = `
+            <div class='err-404'>
+                <p class="err-code">404</p>
+                <p class="err-msg">Page Not Found!<p/>
+            </div>`;
     }
+    if(pathname !== `/search`) removeScrollEl();
 
-    setTimeout(() => {
-        menuEventListener()
-    },100)
+    const headerTitle = document.querySelector('.title');
+    if(headerTitle) menuEventListener()
 };
+
+const removeScrollEl = () => {
+    document.querySelector(`.scroll`) !== null ? document.body.removeChild(document.querySelector(`.scroll`)) : null;
+}
 
 const menuEventListener = () => {
     const title = document.querySelector('.title');
@@ -49,9 +55,8 @@ export function locationChange(e) {
 
         if(text === 'OMDb API' ) hrefVal = '/'
         if(text === 'Search' ) hrefVal = '/search'
-        if(text === 'Movies' ) hrefVal = '/movies'
-        if(text === 'About' ) hrefVal = '/about'
-        if(e.target.classList.contains('movie-list')) hrefVal = '/movies'
+        if(text === 'Movie' ) hrefVal = '/movie'
+        if(e.target.classList.contains('movie-list')) hrefVal = '/movie'
 
         const targetUrl = hrefVal;
         const { pathname } = window.location;

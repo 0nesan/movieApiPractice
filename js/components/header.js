@@ -9,10 +9,7 @@ export const Header = {
                     <span>Search</span>
                 </li>
                 <li class="menu">
-                    <span>Movies</span>
-                </li>
-                <li class="menu">
-                    <span>About</span>
+                    <span>Movie</span>
                 </li>
             </ul>
         </div>`,

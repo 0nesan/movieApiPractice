@@ -1,7 +1,21 @@
-@import url("https://hangeul.pstatic.net/hangeul_static/css/nanum-barun-gothic.css");
-* { font-family:'NanumBarunGothic' !important; box-sizing:border-box;}
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+* {
+    box-sizing: border-box !important;
+    line-height:1.2 !important;
+}
+
 html, body {
     font-size:10px;
+    min-height:100vh;
+}
+
+.html,body {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.html::-webkit-scrollbar, body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 
 @mixin button-reset() {
@@ -27,7 +41,6 @@ html, body {
     height:150px;
     background:rgba(255,255,255,.7);
     border-radius:50%;
-    // box-shadow: 0px 0px 10px 5px #fff;
     position:fixed;
     top:calc(50% - 75px);
     left:calc(50% - 75px);;
@@ -41,5 +54,52 @@ html, body {
         background-position:center;
         background-size:contain;
         animation: bg-ani 5s linear forwards;
+    }
+}
+
+.scroll {
+    display:block;
+    width:10px;
+    height:10px;
+    background:transparent;
+    position:absolute;
+    bottom:-10px;
+}
+
+.err-404 {
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+
+    .err-code {
+        font-size:20rem;
+        font-weight:400;
+        font-family: 'Anton', sans-serif;
+    }
+
+    .err-msg {
+        font-size:5rem;
+        font-weight:600;
+    }
+}
+
+
+.err-movie {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    text-align:center;
+    font-size:5rem;
+    font-weight:600;
+
+    p {
+        margin-top:20px;
+        font-size:2rem;
+        font-weight:400;
     }
 }

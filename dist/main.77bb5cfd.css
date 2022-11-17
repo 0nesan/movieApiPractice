@@ -432,6 +432,17 @@ header .header-wrap .menu-wrap .menu span.click {
   text-shadow: 1px 1px 3px #000;
 }
 
+@media (max-width: 700px) {
+  header .header-wrap .title {
+    text-shadow: 1px 1px 2px #000;
+  }
+  header .header-wrap .menu-wrap .menu span:hover {
+    text-shadow: 1px 1px 2px #000;
+  }
+  header .header-wrap .menu-wrap .menu span.click {
+    text-shadow: 1px 1px 2px #000;
+  }
+}
 .movie-wrap {
   display: flex;
   gap: 5%;
@@ -603,6 +614,7 @@ main .header-wrap {
   main .title {
     margin: 5vh 0 0 40px;
     font-size: 18rem;
+    text-shadow: 1px 1px 3px #000;
   }
   main .menu-wrap {
     margin: 5vh 0 5vh;

@@ -146,6 +146,7 @@ html, body {
   border-radius: 5px;
   border: 1px solid #666;
   font-size: 1.8rem;
+  color: #111;
 }
 .search-input-wrap select:focus {
   outline: none;
@@ -160,6 +161,7 @@ html, body {
   border-radius: 5px;
   background: #ddd;
   font-size: 1.8rem;
+  color: #111;
 }
 .search-input-wrap button:hover {
   background: #111;
@@ -254,6 +256,7 @@ html, body {
   .search-input-wrap {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 5px;
     height: 100%;
   }
   .search-input-wrap .movie-title {
@@ -262,7 +265,7 @@ html, body {
   }
   .search-input-wrap select {
     height: 30px;
-    padding: 0 5px;
+    padding: 0 12px 0 5px;
   }
   .search-input-wrap button {
     height: 30px;

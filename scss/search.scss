@@ -51,6 +51,7 @@
         border-radius:5px;
         border:1px solid #666;
         font-size:1.8rem;
+        color:#111;
         
         @include focus;
     }
@@ -62,6 +63,7 @@
         border-radius:5px;
         background:#ddd;
         font-size:1.8rem;
+        color:#111;
         
         &:hover {
             background:#111;
@@ -142,6 +144,7 @@
     .search-input-wrap {
         flex-wrap: wrap;
         justify-content:center;
+        gap:5px;
         height:100%;
 
         .movie-title {
@@ -151,7 +154,7 @@
 
         select {
             height:30px;
-            padding:0 5px;
+            padding:0 12px 0 5px;
         }
 
         button {

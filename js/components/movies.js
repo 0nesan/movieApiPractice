@@ -53,9 +53,8 @@ export const Movies = {
                     }
                     return ratings
                 }
-                
                 const movieInfo = `
-                    <img class="movie-img" src='${data.Poster}'>
+                    <div class="movie-img" style='background-image:url(${data.Poster.replace('SX300', `SX500`)})'></div>
                     <div class="movie-info-wrap">
                         <h2 class="movie-title">${data.Title}</h2>
 

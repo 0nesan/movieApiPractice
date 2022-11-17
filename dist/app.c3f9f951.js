@@ -302,6 +302,8 @@ var Search = {
     var scrollEl = document.createElement('div');
     scrollEl.classList.add('scroll');
     document.querySelector(".scroll") === null ? document.body.appendChild(scrollEl) : null;
+    var listLag;
+    var dataTotal;
     var searchData = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(titleVal, typeVal, yearsVal, numsVal) {
         var _movieListWrap, data, dataInfo, movieList;
@@ -322,23 +324,26 @@ var Search = {
                 }
                 return _context.abrupt("return");
               case 8:
+                dataTotal = Number(data.totalResults);
+                console.log(dataTotal);
+                console.log(listLag);
                 movieList = dataInfo.map(function (e) {
                   e.Poster === 'N/A' ? e.Poster = 'https://t1.daumcdn.net/cfile/tistory/247AD54557E5DF5D21' : e.Poster = e.Poster;
-                  return "\n                        <div class=\"movie-list\" movieid='".concat(e.imdbID, "' movietitle='").concat(e.Title, "'>\n                            <img class=\"movie-list-poster\" src='").concat(e.Poster, "' alt'").concat(e.Title + 'Poster', "'>\n                            <p class=\"movie-list-title\">").concat(e.Title).concat(e.Year, "</p>\n                        </div>\n                        ");
+                  return "\n                        <div class=\"movie-list\" movieid='".concat(e.imdbID, "' movietitle=\"").concat(e.Title, "\">\n                            <img class=\"movie-list-poster\" src='").concat(e.Poster, "' alt'").concat(e.Title + 'Poster', "'>\n                            <p class=\"movie-list-title\">").concat(e.Title).concat(e.Year, "</p>\n                        </div>\n                        ");
                 });
                 _movieListWrap.innerHTML += movieList.join('');
-                _context.next = 15;
+                _context.next = 18;
                 break;
-              case 12:
-                _context.prev = 12;
+              case 15:
+                _context.prev = 15;
                 _context.t0 = _context["catch"](0);
                 movieListWrap.innerHTML = "<div class=\"err-msg\">'".concat(titleVal, "'\uC5D0 \uB300\uD55C \uAC80\uC0C9 \uACB0\uACFC\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4.</div>");
-              case 15:
+              case 18:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 12]]);
+        }, _callee, null, [[0, 15]]);
       }));
       return function searchData(_x, _x2, _x3, _x4) {
         return _ref.apply(this, arguments);
@@ -379,7 +384,7 @@ var Search = {
                   _context2.next = 4;
                   break;
                 }
-                return _context2.abrupt("return");
+                return _context2.abrupt("return", a = false);
               case 4:
                 //로딩 시작
                 loader.start();
@@ -418,13 +423,14 @@ var Search = {
 
                 // 상세 페이지 이동 및 아이디, 타이틀 속성값 추가
                 movieList = document.querySelectorAll('.movie-list');
+                listLag = Number(document.querySelectorAll('.movie-list').length);
                 if (movieList !== null) {
                   movieList.forEach(function (e) {
                     e.addEventListener('click', idPush);
                     e.addEventListener('click', _app.locationChange);
                   });
                 }
-              case 24:
+              case 25:
               case "end":
                 return _context2.stop();
             }
@@ -448,8 +454,10 @@ var Search = {
       var io = new IntersectionObserver(function (entries, observer) {
         var pathname = window.location.pathname;
         var movieList = document.querySelector('.movie-list');
-        if (entries[0].isIntersecting && pathname === '/search' && movieList !== null) {
-          if (titleVal !== undefined) {
+        if (entries[0].isIntersecting) {
+          if (dataTotal !== undefined && listLag === dataTotal) {
+            null;
+          } else if (pathname === '/search' && movieList !== null && titleVal !== undefined) {
             var _scroll = document.documentElement.scrollTop;
             window.scrollTo(0, _scroll - 5);
             numsVal++;
@@ -554,7 +562,7 @@ var Movies = {
                   }
                   return ratings;
                 };
-                movieInfo = "\n                    <img class=\"movie-img\" src='".concat(data.Poster, "'>\n                    <div class=\"movie-info-wrap\">\n                        <h2 class=\"movie-title\">").concat(data.Title, "</h2>\n\n                        <ul class=\"movie-date\">\n                            <li>").concat(data.Released, "</li>\n                            <li>").concat(data.Runtime.replace(' ', ''), "</li>\n                            <li>").concat(data.Country, "</li>\n                        </ul>\n\n                        <div>\n                            <p>").concat(data.Plot, "</p>\n                        </div>\n\n                        <div class=\"movie-ratings\">\n                            <h3>Ratings</h3>\n                            <div>\n                                ").concat(ratings(), "\n                            </div>\n                        </div>\n\n                        <div>\n                            <h3>Actors</h3>\n                            <p>").concat(data.Actors, "</p>\n                        </div>\n\n                        <div>\n                            <h3>Production</h3>\n                            <p>").concat(data.Production === 'N/A' ? 'No information' : data.Production, "</p>\n                        </div>\n\n                        <div>\n                            <h3>Genre</h3>\n                            <p>").concat(data.Genre, "</p>\n                        </div>\n                    </div>\n                ");
+                movieInfo = "\n                    <div class=\"movie-img\" style='background-image:url(".concat(data.Poster.replace('SX300', "SX500"), ")'></div>\n                    <div class=\"movie-info-wrap\">\n                        <h2 class=\"movie-title\">").concat(data.Title, "</h2>\n\n                        <ul class=\"movie-date\">\n                            <li>").concat(data.Released, "</li>\n                            <li>").concat(data.Runtime.replace(' ', ''), "</li>\n                            <li>").concat(data.Country, "</li>\n                        </ul>\n\n                        <div>\n                            <p>").concat(data.Plot, "</p>\n                        </div>\n\n                        <div class=\"movie-ratings\">\n                            <h3>Ratings</h3>\n                            <div>\n                                ").concat(ratings(), "\n                            </div>\n                        </div>\n\n                        <div>\n                            <h3>Actors</h3>\n                            <p>").concat(data.Actors, "</p>\n                        </div>\n\n                        <div>\n                            <h3>Production</h3>\n                            <p>").concat(data.Production === 'N/A' ? 'No information' : data.Production, "</p>\n                        </div>\n\n                        <div>\n                            <h3>Genre</h3>\n                            <p>").concat(data.Genre, "</p>\n                        </div>\n                    </div>\n                ");
                 movieWrap.innerHTML = movieInfo;
                 loader.stop();
                 _context.next = 17;
@@ -684,7 +692,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64597" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60772" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

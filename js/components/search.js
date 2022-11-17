@@ -46,21 +46,24 @@ export const Search = {
         const scrollEl = document.createElement('div');
         scrollEl.classList.add('scroll');
         document.querySelector(`.scroll`) === null ? document.body.appendChild(scrollEl) : null;
-        
-
+        let listLag ;
+        let dataTotal ;
         const searchData = async (titleVal, typeVal, yearsVal, numsVal) => {      
             try{
                 const movieListWrap = document.querySelector('.movieListWrap');
                 const data = await getdata(titleVal, typeVal, yearsVal, numsVal)
                 const dataInfo = data.Search;
                 if(dataInfo === undefined && numsVal > 1) return 
+                dataTotal = Number(data.totalResults);
+                console.log(dataTotal);
+                console.log(listLag);
 
                 const movieList = dataInfo.map(e => {
                     e.Poster === 'N/A' ? e.Poster = 'https://t1.daumcdn.net/cfile/tistory/247AD54557E5DF5D21' : e.Poster = e.Poster;
 
                     return (
                         `
-                        <div class="movie-list" movieid='${e.imdbID}' movietitle='${e.Title}'>
+                        <div class="movie-list" movieid='${e.imdbID}' movietitle="${e.Title}">
                             <img class="movie-list-poster" src='${e.Poster}' alt'${e.Title + 'Poster'}'>
                             <p class="movie-list-title">${e.Title}${e.Year}</p>
                         </div>
@@ -90,7 +93,7 @@ export const Search = {
         const renderEvent = async (e, scroll) => {
             //중복 검색 리턴
             if(titleVal === title && typeVal === type && yearsVal === years && numsVal === nums && e === 1){
-                return
+                return a = false;
             } else {
                 //로딩 시작
                 loader.start();
@@ -111,10 +114,10 @@ export const Search = {
             }
             // 비교군 변수값 할당
             title = titleVal, type = typeVal, years = yearsVal, nums = numsVal;
-
             
             // 상세 페이지 이동 및 아이디, 타이틀 속성값 추가
             const movieList = document.querySelectorAll('.movie-list');
+            listLag =  Number(document.querySelectorAll('.movie-list').length);
             if(movieList !== null) {
                 movieList.forEach(e => {
                     e.addEventListener('click', idPush)
@@ -132,21 +135,23 @@ export const Search = {
         // 무한 스크롤
         const scroll = () => {
             const box = document.querySelector('.scroll');
-
+            
             const io = new IntersectionObserver( (entries, observer)=> {
                 const { pathname } = window.location;
-                let movieList = document.querySelector('.movie-list')
-                if (entries[0].isIntersecting && pathname === '/search' && movieList !== null) {
-                    if(titleVal !== undefined){
+                let movieList = document.querySelector('.movie-list');
+                if (entries[0].isIntersecting) {
+                    if( dataTotal !== undefined && listLag === dataTotal ) {
+                        null
+                    }else if(pathname === '/search' && movieList !== null && titleVal !== undefined){
                         const scroll = document.documentElement.scrollTop;
                         window.scrollTo(0, scroll - 5)
                     
                         numsVal++
                         renderEvent(0, numsVal)
                     }
-                }
+                } 
             },{threshold: 0.5});
-            io.observe(box);  
+            io.observe(box);
         }
         scroll();
         

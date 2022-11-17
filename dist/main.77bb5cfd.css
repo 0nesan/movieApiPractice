@@ -96,7 +96,7 @@ html, body {
   max-width: 1500px;
   height: 40px;
   padding: 0 30px;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 .search-input-wrap .movie-title {
   width: 100%;
@@ -141,7 +141,7 @@ html, body {
   width: calc(100% - 60px);
   max-width: 1440px;
   padding: 40px 20px 40px 40px;
-  margin: 30px 30px 100px 30px;
+  margin: 10px 30px 300px 30px;
   background: #111;
   border-radius: 10px;
 }
@@ -333,6 +333,10 @@ header .header-wrap .menu-wrap .menu span.click {
   width: 500px;
   height: 750px;
   border-radius: 10px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #000;
 }
 .movie-wrap .movie-info-wrap {
   width: calc(100% - 500px);

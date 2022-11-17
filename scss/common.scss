@@ -89,6 +89,7 @@ html, body {
 
 
 .err-movie {
+    width:90%;
     position:absolute;
     top:50%;
     left:50%;
@@ -102,4 +103,12 @@ html, body {
         font-size:2rem;
         font-weight:400;
     }
+}
+
+
+@media (max-width: 700px){
+    html,body {
+        font-size:7px;
+    }
+
 }

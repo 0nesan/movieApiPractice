@@ -84,3 +84,27 @@ main {
         background-position-y:100%;
     }
 }
+
+@media (max-width: 700px){ 
+    main {
+        .title {
+            margin:5vh 0 0 40px;
+            font-size:18rem;
+        }
+        .menu-wrap {
+            margin: 5vh 0 5vh;
+            gap:50px;
+
+            .menu {
+                margin-left:60px;
+                font-size:10rem;
+            } 
+        } 
+    }
+
+    .bg-box {
+        .bg-img {
+            right: -90px;
+        }
+    }
+}

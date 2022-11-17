@@ -1,10 +1,10 @@
-import { apiKey } from './apikeys.js'
 import { Main } from './components/main'
 
 export default async (movieName, movieType, movieYear, nums, movieId, getMovieTitle) => {
     try {
+        const API_KEY = process.env.API_KEY
         const url = `https://www.omdbapi.com/`
-        const apikey = `?apikey=${apiKey}&`
+        const apikey = `?apikey=${API_KEY}&`
         const title = `s=${movieName};`
         const getTitle = `&t=${getMovieTitle};`
         const type = `&type=${movieType}`

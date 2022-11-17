@@ -5,6 +5,30 @@
     line-height:1.2 !important;
 }
 
+input{
+    /*ios대응*/
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+}
+
+select{
+    /*ios대응*/
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+    appearance: none;
+    background:url('../images/arrow.png') no-repeat 90% 50% #fff; background-size:10px 15px;
+}
+
+input, textarea, button {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+}
+
 html, body {
     font-size:10px;
     min-height:100vh;

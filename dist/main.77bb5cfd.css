@@ -614,8 +614,7 @@ main .header-wrap {
   main .title {
     margin: 5vh 0 0 40px;
     font-size: 18rem;
-    text-shadow: 1px 1px 4px #000;
-    letter-spacing: 6px;
+    text-shadow: 5px 0 #000, -1px 0 #000, 2px 0 #000, 2px 0 #000;
   }
   main .menu-wrap {
     margin: 5vh 0 5vh;

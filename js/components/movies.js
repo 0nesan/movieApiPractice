@@ -15,8 +15,6 @@ export const Movies = {
             try{
                 loader.start();
                 const data = await getdata(0,0,0,0,getIdVal,getTitleVal)
-                console.log(data);
-                console.log(data.Ratings[0])
 
                 const ratings = () => {
                     let source = []

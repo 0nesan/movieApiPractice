@@ -107,9 +107,9 @@ html, body {
   width: 100%;
   height: 40px;
   padding-left: 10px;
-  font-size: 1.5rem;
   border-radius: 5px;
   border: 1px solid #666;
+  font-size: 1.8rem;
 }
 .search-input-wrap .movie-title:focus {
   outline: none;
@@ -120,6 +120,7 @@ html, body {
   padding: 0 10px;
   border-radius: 5px;
   border: 1px solid #666;
+  font-size: 1.8rem;
 }
 .search-input-wrap select:focus {
   outline: none;
@@ -133,6 +134,7 @@ html, body {
   padding: 0 20px;
   border-radius: 5px;
   background: #ddd;
+  font-size: 1.8rem;
 }
 .search-input-wrap button:hover {
   background: #111;
@@ -176,7 +178,7 @@ html, body {
     max-height: 500px;
   }
 }
-@media (max-width: 900px) {
+@media (max-width: 700px) {
   .movieListWrap .movie-list {
     width: calc(100% - 20px);
     max-height: 1200px;
@@ -199,7 +201,7 @@ html, body {
   line-height: 40px !important;
   text-align: center;
   background: #fff;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 600;
   padding: 0 10px;
   position: absolute;
@@ -459,9 +461,14 @@ header .header-wrap .menu-wrap .menu span.click {
     width: 100%;
     margin: 10px 0 50px;
   }
+  .movie-wrap .movie-info-wrap .movie-ratings div .rating-wrap img {
+    height: 25px;
+  }
   .movie-wrap .movie-img {
     width: 100%;
-    height: 500px;
+    max-height: 500px;
+    background-size: contain;
+    background-color: transparent;
   }
 }
 html {

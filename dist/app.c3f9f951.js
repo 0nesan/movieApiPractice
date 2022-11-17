@@ -516,8 +516,6 @@ var Movies = {
                 return (0, _getdata.default)(0, 0, 0, 0, _search.getIdVal, _search.getTitleVal);
               case 4:
                 data = _context.sent;
-                console.log(data);
-                console.log(data.Ratings[0]);
                 ratings = function ratings() {
                   var source = [];
                   var value = [];
@@ -557,19 +555,19 @@ var Movies = {
                 movieInfo = "\n                    <div class=\"movie-img\" style='background-image:url(".concat(data.Poster.replace('SX300', "SX500"), ")'></div>\n                    <div class=\"movie-info-wrap\">\n                        <h2 class=\"movie-title\">").concat(data.Title, "</h2>\n\n                        <ul class=\"movie-date\">\n                            <li>").concat(data.Released, "</li>\n                            <li>").concat(data.Runtime.replace(' ', ''), "</li>\n                            <li>").concat(data.Country, "</li>\n                        </ul>\n\n                        <div>\n                            <p>").concat(data.Plot, "</p>\n                        </div>\n\n                        <div class=\"movie-ratings\">\n                            <h3>Ratings</h3>\n                            <div>\n                                ").concat(ratings(), "\n                            </div>\n                        </div>\n\n                        <div>\n                            <h3>Actors</h3>\n                            <p>").concat(data.Actors, "</p>\n                        </div>\n\n                        <div>\n                            <h3>Production</h3>\n                            <p>").concat(data.Production === 'N/A' ? 'No information' : data.Production, "</p>\n                        </div>\n\n                        <div>\n                            <h3>Genre</h3>\n                            <p>").concat(data.Genre, "</p>\n                        </div>\n                    </div>\n                ");
                 movieWrap.innerHTML = movieInfo;
                 loader.stop();
-                _context.next = 17;
+                _context.next = 15;
                 break;
-              case 13:
-                _context.prev = 13;
+              case 11:
+                _context.prev = 11;
                 _context.t0 = _context["catch"](0);
                 loader.stop();
                 movieWrap.innerHTML = "\n                    <div class=\"err-movie\">\n                        \uC0C1\uC138 \uC870\uD68C \uB0B4\uC5ED\uC774 \uC5C6\uC2B5\uB2C8\uB2E4.\n                        <p>\uC601\uD654 \uC378\uB124\uC77C \uD074\uB9AD\uC744 \uD1B5\uD574 \uC870\uD68C\uD558\uC2E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.<p>\n                    <div>";
-              case 17:
+              case 15:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 13]]);
+        }, _callee, null, [[0, 11]]);
       }));
       return function movieData() {
         return _ref.apply(this, arguments);
@@ -684,7 +682,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56020" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58545" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

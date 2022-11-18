@@ -9,7 +9,6 @@ input{
     /*ios대응*/
     appearance: none;
     -webkit-appearance: none;
-    -webkit-border-radius: 0;
 }
 
 select{
@@ -17,7 +16,8 @@ select{
     -webkit-appearance: none;
     -moz-appearance: none; 
     appearance: none;
-    background:url('../images/arrow.png') no-repeat 90% 50% #fff; background-size:10px 15px;
+    background:url('../images/arrow.png') no-repeat 90% 50% #fff; 
+    background-size:10px 15px;
 }
 
 input, textarea, button {

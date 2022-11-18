@@ -8,7 +8,7 @@ let year = 2022;
 const years = () => {
     let option = ''
     for( let i = year; i > 1980 ; i--){
-        option += `<option value=${year--}>${year}</option>`
+        option += `<option value=${i}>${i}</option>`
     }
     return option;
 }
@@ -55,8 +55,6 @@ export const Search = {
                 const dataInfo = data.Search;
                 if(dataInfo === undefined && numsVal > 1) return 
                 dataTotal = Number(data.totalResults);
-                console.log(dataTotal);
-                console.log(listLag);
 
                 const movieList = dataInfo.map(e => {
                     e.Poster === 'N/A' ? e.Poster = 'https://t1.daumcdn.net/cfile/tistory/247AD54557E5DF5D21' : e.Poster = e.Poster;

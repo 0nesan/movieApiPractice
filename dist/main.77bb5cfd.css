@@ -10,7 +10,6 @@ input {
   /*ios대응*/
   appearance: none;
   -webkit-appearance: none;
-  -webkit-border-radius: 0;
 }
 
 select {
@@ -281,7 +280,6 @@ input {
   /*ios대응*/
   appearance: none;
   -webkit-appearance: none;
-  -webkit-border-radius: 0;
 }
 
 select {
@@ -536,10 +534,6 @@ header .header-wrap .menu-wrap .menu span.click {
     background-color: transparent;
   }
 }
-html {
-  position: relative;
-}
-
 .bg-box {
   min-height: 100vh;
   height: 100%;

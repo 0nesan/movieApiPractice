@@ -169,7 +169,7 @@ var _default = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            API_KEY = "7035c60c&s';";
+            API_KEY = undefined;
             url = "https://www.omdbapi.com/";
             apikey = "?apikey=".concat(API_KEY, "&");
             title = "s=".concat(movieName, ";");
@@ -277,7 +277,7 @@ var year = 2022;
 var years = function years() {
   var option = '';
   for (var i = year; i > 1980; i--) {
-    option += "<option value=".concat(year--, ">").concat(year, "</option>");
+    option += "<option value=".concat(i, ">").concat(i, "</option>");
   }
   return option;
 };
@@ -317,25 +317,23 @@ var Search = {
                 return _context.abrupt("return");
               case 8:
                 dataTotal = Number(data.totalResults);
-                console.log(dataTotal);
-                console.log(listLag);
                 movieList = dataInfo.map(function (e) {
                   e.Poster === 'N/A' ? e.Poster = 'https://t1.daumcdn.net/cfile/tistory/247AD54557E5DF5D21' : e.Poster = e.Poster;
                   return "\n                        <div class=\"movie-list\" movieid='".concat(e.imdbID, "' movietitle=\"").concat(e.Title, "\">\n                            <img class=\"movie-list-poster\" src='").concat(e.Poster, "' alt'").concat(e.Title + 'Poster', "'>\n                            <p class=\"movie-list-title\">").concat(e.Title).concat(e.Year, "</p>\n                        </div>\n                        ");
                 });
                 _movieListWrap.innerHTML += movieList.join('');
-                _context.next = 18;
+                _context.next = 16;
                 break;
-              case 15:
-                _context.prev = 15;
+              case 13:
+                _context.prev = 13;
                 _context.t0 = _context["catch"](0);
                 movieListWrap.innerHTML = "<div class=\"err-msg\">'".concat(titleVal, "'\uC5D0 \uB300\uD55C \uAC80\uC0C9 \uACB0\uACFC\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4.</div>");
-              case 18:
+              case 16:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[0, 15]]);
+        }, _callee, null, [[0, 13]]);
       }));
       return function searchData(_x, _x2, _x3, _x4) {
         return _ref.apply(this, arguments);
@@ -682,7 +680,11 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+<<<<<<< HEAD
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "53719" + '/');
+=======
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56442" + '/');
+>>>>>>> 182cc8c0155b900c6fc9a2e860ef555b3cb9c699
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

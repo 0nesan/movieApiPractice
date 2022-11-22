@@ -17,8 +17,8 @@ export const Movies = {
                 const data = await getdata(0,0,0,0,getIdVal,getTitleVal)
 
                 const ratings = () => {
-                    let source = []
-                    let value = []
+                    const source = []
+                    const value = []
                     let ratings = '';
                     
                     for(let x of data.Ratings){

@@ -169,7 +169,7 @@ var _default = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
-            API_KEY = "7035c60c&s';";
+            API_KEY = undefined;
             url = "https://www.omdbapi.com/";
             apikey = "?apikey=".concat(API_KEY, "&");
             title = "s=".concat(movieName, ";");
@@ -680,7 +680,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53968" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64870" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

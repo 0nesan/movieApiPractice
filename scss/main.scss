@@ -4,7 +4,7 @@
 @import "movies.scss";
 
 .bg-box {
-    min-height:100vh;
+    min-height:calc(100% + 10vh);
     height:100%;
     width:100vw;
     position:absolute;
@@ -48,7 +48,7 @@ main {
         display:flex;
         flex-direction:column;
         gap:100px;
-        margin:10vh 0 0;
+        margin:10vh 0;
         font-family: 'Anton', sans-serif;
     
         .menu {
